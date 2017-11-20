@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>Add Registry</h1>
+    {% from "includes/_formhelpers.html" import render_field %}
+    <form method="POST" action="" id="address">
+        <div class="form-group" style="float: left; width: 49%">
+            {{ render_field(form.name, class_="form-control") }}
+        </div>
+        <div class="form-group" style="float: right; width: 49%">
+            {{ render_field(form.last_name, class_="form-control") }}
+        </div>
+        <div class="form-group" style="float: left; width: 22%; margin-right: 2%">
+            {{ render_field(form.phone, class_="form-control") }}
+        </div>
+        <div class="form-group" style="float: left; width: 37%; margin-right: 2%">
+            {{ render_field(form.email, class_="form-control") }}
+        </div>
+        <div class="form-group" style="float: left; width: 37%; margin-left: 0">
+            {{ render_field(form.web_page, class_="form-control") }}
+        </div>
+        <div class="form-group" id="locationField">
+            <label for="autocomplete">Search address</label>
+            <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text" class="form-control"/>
+        </div>
+        <div class="form-group field" style="float: left; width: 49%">
+            {{ render_field(form.route, class_="form-control") }}
+        </div>
+        <div class="form-group field" style="float: right; width: 49%">
+            {{ render_field(form.locality, class_="form-control") }}
+        </div>
+        <div class="form-group field" style="float: left; width: 49%">
+            {{ render_field(form.postal_code, class_="form-control") }}
+        </div>
+        <div class="form-group field" style="float: right; width: 49%">
+            {{ render_field(form.country, class_="form-control") }}
+        </div>
+
+        <table id="address" style="display: none">
+            <tr>
+                <td class="slimField"><input class="field" id="street_number" disabled="true"></td>
+                <td class="wideField" colspan="2"><input class="field" id="route" disabled="true"></td>
+            </tr>
+            <tr>
+                <td class="wideField" colspan="3"><input class="field" id="locality" disabled="true"></td>
+            </tr>
+            <tr>
+                <td class="slimField"><input class="field" id="administrative_area_level_1" disabled="true"></td>
+                <td class="wideField"><input class="field" id="postal_code" disabled="true"></td>
+            </tr>
+            <tr>
+                <td class="wideField" colspan="3"><input class="field" id="country" disabled="true"></td>
+            </tr>
+        </table>
+
+    <script type ="text/javascript" src ="/static/googlePlaces.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZtSpInnPwf2z5KcNiK5A_AcvMawk3kUs&libraries=places&callback=initAutocomplete" async defer></script>
+
+        <p>
+            <td><input class="btn btn-primary" type="submit" value="Submit"></td>
+            <td><a href="/dashboard" class="btn btn-danger">Cancel</a></td>
+
+    </form>
+    <div>
+
+    </div>
+{% endblock %}

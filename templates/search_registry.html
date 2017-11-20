@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>Search Registry <small> List of search results</small></h1>
+    <td><a class="btn btn-success" href="/add_registry"> Add Registry</a></td>
+    <hr>
+    <div style="border-radius: 5px; border: 2px solid #73AD21; width: 100%; padding: 5px;">
+        <form action="{{url_for('search_registry')}}" method="post">
+            Search: <input type="text" name="search_text">
+            <input type="radio" name="search_field" value="name"/> Name
+            <input type="radio" name="search_field" value="email"/> Email
+            <input type="radio" name="search_field" value="postal_code"/> Postal Code
+            <input type="radio" name="search_field" value="city"/> City
+            <input type="radio" name="search_field" value="country"/> Country
+            <input type="submit" value="search" class="bbtn btn-default pull-right">
+        </form>
+    </div>
+    <hr>
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Phone</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>Postal Code</th>
+            <th>Country</th>
+            <th>Email</th>
+            <th>Web Page</th>
+        <th></th>
+        <th></th>
+        </tr>
+    {% for registry in registries %}
+        <tr>
+            <td>{{registry.name}}</td>
+            <td>{{registry.last_name}}</td>
+            <td>{{registry.phone}}</td>
+            <td>{{registry.street}}</td>
+            <td>{{registry.city}}</td>
+            <td>{{registry.postal_code}}</td>
+            <td>{{registry.country}}</td>
+            <td>{{registry.email}}</td>
+            <td>{{registry.web_page}}</td>
+            <td><a href="edit_registry/{{registry.id}}" class="btn btn-default pull-right">Edit</a></td>
+            <td>
+            <form action="{{url_for('delete_registry', id=registry.id)}}" method="post">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="submit" value="Delete" class="btn btn-danger">
+            </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

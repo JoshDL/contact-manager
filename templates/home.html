@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="jumbotron text-center">
+      <h1>Welcome to Josias'</h1>
+      <h1>Technical Test</h1>
+    <p class="lead">This application is built on the Python Flask framework. The objective of the challenge was to develop
+                    a simple contact manager. It has a graphical interface with the functionality required. Please, continue
+                    to the dashboard and proceed evaluating the web app.</p>
+    {% if session.logged_in == NULL %}
+      <a href="/dashboard" class="btn btn-success btn-lg">Continue to Dashboard >></a>
+    {% endif %}
+  </div>
+{% endblock %}
